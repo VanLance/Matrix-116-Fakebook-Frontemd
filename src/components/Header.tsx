@@ -3,13 +3,10 @@ import Container from 'react-bootstrap/Container';
 
 export default function Header() {
   return (
-    <>
-      <Navbar bg="light" sticky="top" className="Header">
-        <Container>
-          <Navbar.Brand>Fakebook</Navbar.Brand>
-        </Container>
-      </Navbar>
-      <h1>Matrix-Fakebook</h1>
-    </>
+    <Navbar bg="light" sticky="top" className="Header">
+      <Container>
+        <Navbar.Brand>Fakebook</Navbar.Brand>
+      </Container>
+    </Navbar>
   );
 }

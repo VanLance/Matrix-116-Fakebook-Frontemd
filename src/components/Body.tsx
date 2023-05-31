@@ -2,25 +2,17 @@ import Container from 'react-bootstrap/Container';
 import Stack from 'react-bootstrap/Stack';
 import Sidebar from './Sidebar';
 
-{
-  /* <Container>
-  <Stack direction="horizontal">
-    <Sidebar />
-    <Container>
-      <Posts />
-    </Container>
-  </Stack>
-</Container>; */
+interface BodyProps {
+  sidebar: boolean;
+  children: JSX.Element | JSX.Element[];
 }
 
-export default function Body({children}:{ children: JSX.Element | JSX.Element[] }) {
+export default function Body({ sidebar, children }: BodyProps) {
   return (
     <Container>
       <Stack direction="horizontal">
-        <Sidebar />
-        <Container>
-          { children }
-        </Container>
+        {sidebar && <Sidebar />}
+        <Container>{children}</Container>
       </Stack>
     </Container>
   );

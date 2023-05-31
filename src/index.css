@@ -6,4 +6,11 @@ body{
 .Sidebar{
   gap:10px;
   align-self: flex-start;
+  margin-right:15px;
+  position: sticky;
+  top:65px;
+}
+
+.Sidebar .nav-item .active {
+  background-color: hotpink;
 }

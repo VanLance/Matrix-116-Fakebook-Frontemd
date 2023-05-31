@@ -11,6 +11,9 @@ export default function Sidebar(){
         <Nav.Link as={NavLink} to='/posts'>Posts</Nav.Link>
       </Nav.Item>
       <Nav.Item>
+        <Nav.Link as={NavLink} to='/login'>Login</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
         <Nav.Link as={NavLink} to='/workouts'>Workouts</Nav.Link>
       </Nav.Item>
     </Navbar>
