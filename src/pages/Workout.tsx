@@ -11,7 +11,7 @@ export default function Workouts() {
   ];
 
   return (
-    <Body sidebar>
+    <Body makepost sidebar>
       {workoutArray.map((workout) => {
         return <Counter exercise={workout} key={workout} />;
       })}

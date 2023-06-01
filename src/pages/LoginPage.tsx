@@ -1,6 +1,7 @@
-import { useContext, useRef } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import Body from '../components/Body';
 import { AuthContext } from '../contexts/UserProvider';
+import { useNavigate } from 'react-router-dom';
 
 const base_api_url = import.meta.env.VITE_APP_BASE_API
 
@@ -8,8 +9,12 @@ export default function LoginPage() {
   const usernameField = useRef<HTMLInputElement>(null)
   const passwordField = useRef<HTMLInputElement>(null)
   const { user, setUser } = useContext(AuthContext)
-  console.log(user)
-
+  const navigate = useNavigate()
+  
+  useEffect(()=>{
+    if(user.token) navigate('/')
+  },[user])
+  
   async function handleLoginForm(e:React.FormEvent<HTMLFormElement>){
     e.preventDefault()
     const res = await fetch(`${base_api_url}/verifyuser`,{
@@ -30,12 +35,11 @@ export default function LoginPage() {
         username:String(usernameField.current?.value),
         token:data[0]['user token']
       })
-      
     }
   }
   
   return (
-    <Body sidebar={ false }>
+    <Body makepost={false} sidebar={ false }>
       <h2>LoginPage</h2>
       <form onSubmit={handleLoginForm}>
         <label>Username:<br/>
@@ -44,7 +48,7 @@ export default function LoginPage() {
         <label>Password:<br/>
           <input type="password" ref={passwordField}/>
         </label><br/><br/>
-        <button type='submit'>Sign In</button>
+        <button>Sign In</button>
       </form>
     </Body>
   );

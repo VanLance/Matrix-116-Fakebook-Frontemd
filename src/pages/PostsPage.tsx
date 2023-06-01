@@ -25,7 +25,7 @@ export default function PostsPage({endpoint,heading}:{endpoint:string,heading:st
   return (
     <>
       
-      <Body sidebar>
+      <Body makepost sidebar>
         {postsArray.length === 0 ? (
           <Spinner animation="border" />
         ) : (

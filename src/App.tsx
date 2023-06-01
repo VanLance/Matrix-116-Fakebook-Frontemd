@@ -5,6 +5,7 @@ import Header from './components/Header';
 import LoginPage from './pages/LoginPage';
 import UserPage from './components/UserPage';
 import AllPosts from './components/AllPosts';
+import Logout from './components/Logout';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/posts" element={<AllPosts />} />
           <Route path="/workouts" element={<Workout />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="/user/:username" element={<UserPage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
