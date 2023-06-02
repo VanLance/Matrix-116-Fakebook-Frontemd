@@ -1,12 +1,23 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../contexts/UserProvider';
 
 export default function Sidebar() {
-  const { user } = useContext(AuthContext);
-  console.log(user);
+  const { user, setUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem('token');
+    if (storedToken && !user.token) {
+      setUser({
+        username: localStorage.getItem('username') || '',
+        token: storedToken,
+        loggedIn: true,
+      });
+    }
+  });
+
   return (
     <Navbar sticky="top" className="flex-column Sidebar">
       <Nav.Item>
@@ -14,7 +25,7 @@ export default function Sidebar() {
           Posts
         </Nav.Link>
       </Nav.Item>
-      {user.token ? (
+      {user.token || localStorage.getItem('token') ? (
         <>
           <Nav.Item>
             <Nav.Link as={NavLink} to={`/user/${user.username}`}>
@@ -28,11 +39,18 @@ export default function Sidebar() {
           </Nav.Item>
         </>
       ) : (
-        <Nav.Item>
-          <Nav.Link as={NavLink} to="/login">
-            Login
-          </Nav.Link>
-        </Nav.Item>
+        <>
+          <Nav.Item>
+            <Nav.Link as={NavLink} to="/register">
+              Register
+            </Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link as={NavLink} to="/login">
+              Login
+            </Nav.Link>
+          </Nav.Item>
+        </>
       )}
       <Nav.Item>
         <Nav.Link as={NavLink} to="/workouts">
